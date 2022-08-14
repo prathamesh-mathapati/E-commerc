@@ -6,7 +6,6 @@ import './ProductsList.css'
 
 const ProductsList = () => {
     const { data, despatch, state: { Instock, Fast, byCategory, redio, high, Reage, search } } = useProduct();
-    const [Addtobutton, setAddtobutton] = useState(true)
     const [value,setValue]=useState("")
     function name() {
         let newArry = data;
@@ -49,7 +48,6 @@ const ProductsList = () => {
         return newArry
     }
     const handaleClick=(item)=>{
-        setAddtobutton(false) 
         setValue(item?._id)
         despatch({ type: 'Cart', payload: item }) 
 
@@ -79,7 +77,7 @@ const ProductsList = () => {
                                             <li>{item.stock ? 'Instok' : 'Out Of Stock'}</li>
                                             <li>Brand {item.brand}</li>
                                         </ul>
-                                        {value===item._id? <Link to='Cart'><button onClick={() => {  setAddtobutton(true) }} className="btn btn-outline-success" type="button">Go to cart</button></Link>:<button onClick={()=>{handaleClick(item)}} type="button" key={item._id} className="btn btn-outline-primary" >Add To Cart</button> }
+                                        {value===item._id? <Link to='Cart'><button className="btn btn-outline-success" type="button">Go to cart</button></Link>:<button onClick={()=>{handaleClick(item)}} type="button" key={item._id} className="btn btn-outline-primary" >Add To Cart</button> }
 
                                         
                                     </div>
