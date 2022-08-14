@@ -1,0 +1,15 @@
+.display{
+    display: flex;
+}
+
+.golden{
+    width: 1rem;
+}
+.img-center{
+    display: flex;
+    align-items: center;
+}
+
+.img-min{
+    width: 3rem;
+}

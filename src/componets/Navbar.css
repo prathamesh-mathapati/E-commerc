@@ -1,0 +1,29 @@
+.logo {
+    width: 5rem;
+  }
+  .search {
+    border: none;
+    width: 35rem;
+  }
+  
+  html {
+    font-size: 1vw;
+  }
+  
+  .search-icon {
+    height: fit-content;
+    color: blue;
+  }
+  .example::-webkit-scrollbar,
+  .example-1::-webkit-scrollbar {
+    display: block;
+  }
+  @media (max-width: 1207px) {
+    .shopping {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+      margin: 0 0;
+    }
+  }
+  
