@@ -6,7 +6,6 @@ const productContext = createContext();
 
 
 const reduser = (state, action) => {
-    // console.log(action);
 
     switch (action.type) {
         case 'Fast':
@@ -37,7 +36,12 @@ const reduser = (state, action) => {
             return { ...state, cart: [...state.cart, action.payload] }
         case 'REMOVE_FROM_CART':
             return {...state,cart: state.cart.filter(element => element._id!==action.payload._id ) }
-        
+            case 'REMOVE_FROM_LIKE':
+                return {...state,Like: state.Like.filter(element => element._id!==action.payload._id ) }
+    
+        case 'like':
+            console.log(state.Like);
+            return { ...state, Like: [...state.Like, action.payload] }
         default: return state;
     }
 }
@@ -53,6 +57,7 @@ const ProductProvider = ({ children }) => {
         Reage: 190000,
         search: 0,
         cart: [],
+        Like:[]
     })
 
 

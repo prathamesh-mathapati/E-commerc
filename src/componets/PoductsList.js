@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useProduct } from "../Context/Product";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Filter from './Filter'
 import './ProductsList.css'
 
 const ProductsList = () => {
-    const { data, despatch, state: { Instock, Fast, byCategory, redio, high, Reage, search } } = useProduct();
-    const [value,setValue]=useState("")
+    const { data, despatch, state: { Instock, Fast, byCategory, redio, high, Reage, search, cart, Like } } = useProduct();
+    const [value, setValue] = useState("")
+    const [value1, setValue1] = useState("")
+
     function name() {
         let newArry = data;
 
@@ -47,22 +49,28 @@ const ProductsList = () => {
         }
         return newArry
     }
-    const handaleClick=(item)=>{
+    const handaleClick = (item) => {
         setValue(item?._id)
-        despatch({ type: 'Cart', payload: item }) 
+        console.log(value);
+        despatch({ type: 'Cart', payload: item })
+    }
+    const like = (item) => {
+        setValue1(item?._id)
+        console.log(value1);
 
+        despatch({ type: 'like', payload: item })
     }
     // 
 
     return (
         <>
-            <div className="col-12 d-flex " >
+            <div className="col-12 d-flex " style={{ paddingTop: '5rem' }} >
                 <Filter />
-                <div className="col-10 "><h4 className="m-4">Showing {name().length} of 22 products</h4>{name().map(item => (
-                    
+                <div className="col-10 "><h4 className="m-2">Showing {name().length} of 22 products</h4>{name().map(item => (
+
                     <div className="card mb-4" key={item._id}>
                         <div className="row g-0">
-                            <div className="col-4 img-center">
+                            <div className="col-3 img-center">
                                 <img src={item.imgURL} className="img-fluid rounded-start w-50 m-4 " alt="none" />
                             </div>
                             <div className="col-8">
@@ -77,17 +85,16 @@ const ProductsList = () => {
                                             <li>{item.stock ? 'Instok' : 'Out Of Stock'}</li>
                                             <li>Brand {item.brand}</li>
                                         </ul>
-                                        {value===item._id? <Link to='Cart'><button className="btn btn-outline-success" type="button">Go to cart</button></Link>:<button onClick={()=>{handaleClick(item)}} type="button" key={item._id} className="btn btn-outline-primary" >Add To Cart</button> }
-
-                                        
+                                        {cart?.some(e => e._id === item._id) ? <Link to='/Cart'><button className="btn btn-outline-success" type="button">Go to cart</button></Link> : <button onClick={() => { handaleClick(item) }} type="button" key={item._id} className="btn btn-outline-primary" >Add To Cart</button>}
                                     </div>
+                                    {Like?.some(e => e._id === item._id) ? <div className="col-1 mt-4 setcolor" style={{ fontSize: "3rem", cursor: "pointer" }} type="button">&#10084;</div> : <div style={{ fontSize: "3rem", cursor: "pointer" }} onClick={() => { like(item) }} type="button" key={item._id} className="col-1 mt-4 " >&#10084;</div>}
                                     <div className="m-3">
                                         <h3>{item.offPrice}</h3>
                                         <p className="fs-5 text-decoration-line-through">{item.price}</p>
                                         <p>5% off</p>
                                         <p className="fs-4">{item.delivery ? 'FastDelivary' : 'Free delivery'}</p>
                                     </div>
-                                </div>
+                                </div>  
 
                             </div>
                         </div>
