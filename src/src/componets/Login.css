@@ -1,0 +1,12 @@
+.width{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50rem;
+}
+.btnColer{
+    background-color: #fb641b;
+}
+.cursor{
+    cursor: pointer;
+}

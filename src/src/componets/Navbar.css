@@ -1,0 +1,54 @@
+.logo {
+    width: 5rem;
+  }
+  .search {
+    border: none;
+    width: 35rem;
+  }
+  
+  html {
+    font-size: 1vw;
+  }
+  
+  .search-icon {
+    height: fit-content;
+    color: blue;
+  }
+  .example::-webkit-scrollbar,
+  .example-1::-webkit-scrollbar {
+    display: block;
+  }
+  .cart{
+    width: 1.3rem;
+    /* font-size: .5rem;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 12% 24%;
+    border: 2px solid;
+    border-radius: 50%;
+    position: absolute;
+    right: -.5rem;
+    top: -.4999999rem; */
+  }
+  .fixed{
+    position: fixed;
+    z-index: +99999;
+    gap: 1rem;
+    width: 100%;
+    /* background-color: blue; */
+  }
+  .pading1{
+    /* justify-content: space-evenly; */
+    width: 100%;
+  }
+
+  
+  @media (max-width: 1207px) {
+    .shopping {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+      margin: 0 0;
+    }
+  }
+  
