@@ -4,7 +4,7 @@ import { useProduct } from "../Context/Product";
 import { Link } from "react-router-dom";
 
 const Favorite=()=>{
-    const {state:{Like, cart},despatch}=useProduct()
+    const {state:{Like},despatch}=useProduct()
             const [value,setValue]=useState("")
 
     const handaleClick=(item)=>{

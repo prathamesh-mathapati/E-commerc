@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useProduct } from "../Context/Product";
 import { Link } from 'react-router-dom'
 import Filter from './Filter'
@@ -6,10 +6,9 @@ import './ProductsList.css'
 
 const ProductsList = () => {
     const { data, despatch, state: { Instock, Fast, byCategory, redio, high, Reage, search, cart, Like } } = useProduct();
-    const [value, setValue] = useState("")
-    const [value1, setValue1] = useState("")
 
     function name() {
+        
         let newArry = data;
 
         if (Instock) {
@@ -50,13 +49,9 @@ const ProductsList = () => {
         return newArry
     }
     const handaleClick = (item) => {
-        setValue(item?._id)
-        console.log(value);
         despatch({ type: 'Cart', payload: item })
     }
     const like = (item) => {
-        setValue1(item?._id)
-        console.log(value1);
 
         despatch({ type: 'like', payload: item })
     }
