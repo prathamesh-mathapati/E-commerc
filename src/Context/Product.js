@@ -6,7 +6,6 @@ const productContext = createContext();
 
 
 const reduser = (state, action) => {
-
     switch (action.type) {
         case 'Fast':
             return { ...state, Fast: !state.Fast };
@@ -14,7 +13,7 @@ const reduser = (state, action) => {
             return { ...state, Instock: !state.Instock };
         case "CATEGORY": {
             if (!state.byCategory.includes(action.payload)) {
-                return { byCategory: [...state.byCategory, action.payload] }
+                return { ...state, byCategory: [...state.byCategory, action.payload] }
             } else {
                 const array = state.byCategory.filter(prod => prod !== action.payload);
                 return { ...state, byCategory: array };
@@ -29,18 +28,15 @@ const reduser = (state, action) => {
         case 'range': {
             return { ...state, Reage: action.payload }
         }
-        case 'search': 
+        case 'search':
             return { ...state, search: action.payload }
-        
-        case 'Cart': 
+        case 'Cart':
             return { ...state, cart: [...state.cart, action.payload] }
         case 'REMOVE_FROM_CART':
-            return {...state,cart: state.cart.filter(element => element._id!==action.payload._id ) }
-            case 'REMOVE_FROM_LIKE':
-                return {...state,Like: state.Like.filter(element => element._id!==action.payload._id ) }
-    
+            return { ...state, cart: state.cart.filter(element => element._id !== action.payload._id) }
+        case 'REMOVE_FROM_LIKE':
+            return { ...state, Like: state.Like.filter(element => element._id !== action.payload._id) }
         case 'like':
-            console.log(state.Like);
             return { ...state, Like: [...state.Like, action.payload] }
         default: return state;
     }
@@ -57,7 +53,7 @@ const ProductProvider = ({ children }) => {
         Reage: 190000,
         search: 0,
         cart: [],
-        Like:[]
+        Like: []
     })
 
 
